@@ -259,21 +259,22 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1)      end),
     awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1)         end),
     awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1)         end),
-    awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1) end),
-    awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
+
+    awful.key({ modkey,           }, "x", function () awful.layout.inc(layouts,  1) end),
+    awful.key({ modkey,           }, "z", function () awful.layout.inc(layouts, -1) end),
 
     awful.key({ modkey, "Control" }, "n", awful.client.restore),
 
     -- Prompt
     awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
 
-    awful.key({ modkey }, "x",
-              function ()
-                  awful.prompt.run({ prompt = "Run Lua code: " },
-                  mypromptbox[mouse.screen].widget,
-                  awful.util.eval, nil,
-                  awful.util.getdir("cache") .. "/history_eval")
-              end),
+    -- awful.key({ modkey }, "x",
+    --           function ()
+    --               awful.prompt.run({ prompt = "Run Lua code: " },
+    --               mypromptbox[mouse.screen].widget,
+    --               awful.util.eval, nil,
+    --               awful.util.getdir("cache") .. "/history_eval")
+    --           end),
 
     -- Screen brightness
     awful.key({ }, "XF86MonBrightnessDown", function () awful.util.spawn("xbacklight -time 100 -dec 10") end),
