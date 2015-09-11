@@ -14,6 +14,8 @@ local menubar = require("menubar")
 -- Volume control: https://github.com/mokasin/apw
 local APW = require("apw/widget")
 
+local File = require("file-utils/file-utils")
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -41,7 +43,9 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init("/usr/share/awesome/themes/default/theme.lua")
+-- beautiful.init("/usr/share/awesome/themes/default/theme.lua")
+
+beautiful.init(File.join(awful.util.getdir("config"), "1944mustang", "theme.lua"))
 
 -- This is used later as the default terminal and editor to run.
 terminal = "gnome-terminal"
@@ -76,7 +80,7 @@ local layouts =
 -- {{{ Wallpaper
 if beautiful.wallpaper then
     for s = 1, screen.count() do
-        gears.wallpaper.maximized(beautiful.wallpaper, s, true)
+        gears.wallpaper.fit(beautiful.wallpaper, s, true)
     end
 end
 -- }}}
@@ -371,7 +375,7 @@ root.keys(globalkeys)
 awful.rules.rules = {
     -- All clients will match this rule.
     { rule = { },
-      properties = { border_width = beautiful.border_width * 2,
+      properties = { border_width = beautiful.border_width,
                      border_color = beautiful.border_normal,
                      focus = awful.client.focus.filter,
                      raise = true,
@@ -463,7 +467,6 @@ client.connect_signal("manage", function (c, startup)
     end
 end)
 
--- client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
-client.connect_signal("focus", function(c) c.border_color = "#FF9800" end)
+client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
