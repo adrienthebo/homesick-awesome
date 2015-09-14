@@ -1,0 +1,6 @@
+[submodule "home/.config/awesome/awesome-1944mustang"]
+	path = home/.config/awesome/1944mustang
+	url = git://github.com/adrienthebo/awesome-1944mustang
+[submodule "home/.config/awesome/file-utils"]
+	path = home/.config/awesome/file-utils
+	url = git://github.com/adrienthebo/file-utils.lua

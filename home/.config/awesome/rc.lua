@@ -80,7 +80,7 @@ local layouts =
 -- {{{ Wallpaper
 if beautiful.wallpaper then
     for s = 1, screen.count() do
-        gears.wallpaper.fit(beautiful.wallpaper, s, true)
+        gears.wallpaper.fit(beautiful.wallpaper, s, "#000000")
     end
 end
 -- }}}
@@ -275,13 +275,14 @@ globalkeys = awful.util.table.join(
     -- Prompt
     awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
 
-    -- awful.key({ modkey }, "x",
-    --           function ()
-    --               awful.prompt.run({ prompt = "Run Lua code: " },
-    --               mypromptbox[mouse.screen].widget,
-    --               awful.util.eval, nil,
-    --               awful.util.getdir("cache") .. "/history_eval")
-    --           end),
+    -- Lua console
+    awful.key({ modkey }, "v",
+              function ()
+                  awful.prompt.run({ prompt = "Run Lua code: " },
+                  mypromptbox[mouse.screen].widget,
+                  awful.util.eval, nil,
+                  awful.util.getdir("cache") .. "/history_eval")
+              end),
 
     -- Screen brightness
     awful.key({ }, "XF86MonBrightnessDown", function () awful.util.spawn("xbacklight -time 100 -dec 10") end),
